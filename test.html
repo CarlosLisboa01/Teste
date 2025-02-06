@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>História de Amor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffe6e6;
+            text-align: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        h2 {
+            margin-bottom: 10px;
+        }
+        .carousel-container {
+            width: 90%;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            display: flex;
+            gap: 20px;
+            padding: 10px;
+            scrollbar-width: none; /* Esconde a barra de rolagem no Firefox */
+            -ms-overflow-style: none; /* Esconde a barra de rolagem no IE/Edge */
+        }
+        .carousel-container::-webkit-scrollbar {
+            display: none; /* Esconde a barra de rolagem no Chrome/Safari */
+        }
+        .story-card {
+            flex: 0 0 80%;
+            max-width: 80%;
+            scroll-snap-align: center;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            background: #ffb6c1;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 20px;
+            text-align: center;
+        }
+        .story-card img {
+            width: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Nossa Viagem</h2>
+    <img src="pngtree-red-3d-heart-emoji-realistic-shadow-png-image_4539964.png" width="100px">
+
+    <div class="carousel-container">
+        <div class="story-card">
+            <p>Nada como a emoção de um novo lugar, a surpresa de cada detalhe e a alegria de compartilhar tudo isso com alguém que amo.</p>
+            <img src="Beto.jfif" alt="Primeiro Encontro">
+        </div>
+        <div class="story-card">
+            <p>Entre risos, adrenalina e novas descobertas, construímos memórias inesquecíveis.</p>
+            <img src="Barco.jfif" alt="Casamento">
+        </div>
+        <div class="story-card">
+            <p>Viajamos para conhecer lugares, mas acabamos descobrindo ainda mais sobre nós mesmos.</p>
+            <img src="Bondinho.jfif" alt="Nova Jornada">
+        </div>
+        <div class="story-card">
+            <p>Exploramos o mundo juntos, criando memórias inesquecíveis.</p>
+            <img src="Coraão.jfif" alt="Viagens Juntos">
+        </div>
+        <div class="story-card">
+            <p>Explorar novos lugares é bom, mas fazê-lo ao lado de quem amamos é ainda melhor.</p>
+            <img src="Lugartop.jfif" alt="Pôr do Sol Romântico">
+        </div>
+        <div class="story-card">
+            <p>Pequenos gestos de amor fazem toda a diferença.</p>
+            <img src="Pedido.jfif" alt="Surpresas e Presentes">
+        </div>
+        <div class="story-card">
+            <p>Os melhores momentos da vida são aqueles que nos fazem sorrir sem perceber.</p>
+            <img src="Coração 2.jfif" alt="Aniversário de Casamento">
+        </div>
+        <div class="story-card">
+            <p>Cada momento se torna incrível com você.</p>
+            <img src="Hot.jfif" alt="Crescimento da Família">
+        </div>
+        <div class="story-card">
+            <p>Cada risada compartilhada torna a aventura ainda mais especial.</p>
+            <img src="d84af1c4-1102-493f-8d43-8c6db15cd35b.jfif" alt="Jantar Romântico">
+        </div>
+    </div>
+
+    <script>
+        // Adicionando suporte a deslizar com o toque no celular
+        const carousel = document.querySelector(".carousel-container");
+
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        carousel.addEventListener("mousedown", (e) => {
+            isDown = true;
+            startX = e.pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
+        });
+
+        carousel.addEventListener("mouseleave", () => {
+            isDown = false;
+        });
+
+        carousel.addEventListener("mouseup", () => {
+            isDown = false;
+        });
+
+        carousel.addEventListener("mousemove", (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 2; // Ajuste a sensibilidade
+            carousel.scrollLeft = scrollLeft - walk;
+        });
+
+        // Suporte ao toque (mobile)
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carousel.addEventListener("touchstart", (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        carousel.addEventListener("touchmove", (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const distance = touchStartX - touchEndX;
+            carousel.scrollLeft += distance * 1.5; // Ajusta a velocidade do swipe
+        });
+    </script>
+</body>
+</html>
